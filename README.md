@@ -2,166 +2,133 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>1WIN GHANA - CASINO PRO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>1XBET GHANA - ABD PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a0e1a;color:#fff}
-.header{background:linear-gradient(90deg,#00d1ff,#0066ff);padding:12px;display:flex;justify-content:space-between;align-items:center}
-.balance{background:#0008;padding:8px 16px;border-radius:20px;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.game{background:#151b2e;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a3555;cursor:pointer}
-.game .icon{font-size:36px;margin-bottom:6px}
-.game h3{font-size:13px}
-.hot{border-color:#ffcc00;box-shadow:0 0 10px #ffcc0044}
-#playArea{padding:12px;display:none}
-.btn{background:linear-gradient(90deg,#00d1ff,#0066ff);border:none;color:#fff;padding:12px 24px;border-radius:8px;font-weight:bold;width:100%;margin:6px 0}
-.mult{font-size:42px;font-weight:bold;text-align:center;margin:20px 0;color:#00ff88}
-.canvasWrap{background:#000;border-radius:12px;height:200px;position:relative;overflow:hidden;margin:10px 0}
-.mines-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0}
-.mine{aspect-ratio:1;background:#1e2a4a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
-.mine.open{background:#00ff8855}
-.mine.bomb{background:#ff004455}
-input{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#111;color:#fff;margin:8px 0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial,sans-serif}
+body{background:#0a0a0a;color:#fff;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+.header{height:56px;background:#0f1c2e;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:sticky;top:0;z-index:99;border-bottom:1px solid #1a2f4a}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;letter-spacing:-0.5px}
+.logo b{color:#fff} .logo span{background:#2ecc71;color:#000;padding:2px 6px;border-radius:4px;font-size:18px}
+.header-right{display:flex;gap:10px;align-items:center}
+.btn-login{background:transparent;border:1px solid #2d4a6b;color:#8da0b8;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600}
+.btn-reg{background:#2ecc71;color:#000;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700}
+.balance-bar{background:#121f33;padding:10px 16px;display:flex;justify-content:space-between;font-size:12px;color:#8da0b8;border-bottom:1px solid #1a2f4a}
+.balance-bar b{color:#ffcc00;font-size:13px}
+.top-tabs{background:#0f1c2e;display:flex;overflow-x:auto;gap:0;border-bottom:1px solid #1a2f4a}
+.top-tabs button{padding:12px 16px;background:none;border:none;color:#8da0b8;font-size:12px;font-weight:600;white-space:nowrap;border-bottom:2px solid transparent}
+.top-tabs button.active{color:#2ecc71;border-bottom-color:#2ecc71}
+.hero{margin:12px;background:linear-gradient(135deg,#1e3a8a 0%,#0f1c2e 100%);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;border:1px solid #1e3a5f}
+.hero h3{font-size:14px;margin-bottom:4px} .hero p{font-size:11px;color:#8da0b8}
+.hero-btn{background:#2ecc71;color:#000;padding:8px 16px;border-radius:20px;font-weight:700;font-size:12px;border:none}
+.sports-header{padding:12px 16px;font-size:12px;font-weight:600;color:#8da0b8;display:flex;justify-content:space-between}
+.match-card{background:#121f33;margin:0 12px 8px 12px;border-radius:10px;padding:12px;border:1px solid #1a2f4a}
+.match-top{display:flex;justify-content:space-between;font-size:10px;color:#5a738f;margin-bottom:8px}
+.match-teams{font-size:13px;font-weight:600;line-height:1.4;margin-bottom:10px}
+.match-teams span{color:#5a738f;font-weight:400}
+.odds-row{display:flex;gap:6px}
+.odd{flex:1;background:#0f1c2e;border:1px solid #1e3a5f;border-radius:6px;padding:8px;text-align:center;transition:0.2s}
+.odd:active{background:#2ecc71;border-color:#2ecc71;color:#000}
+.odd-label{font-size:9px;color:#5a738f} .odd-val{font-size:13px;font-weight:700;margin-top:2px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:64px;background:#0f1c2e;border-top:1px solid #1a2f4a;display:flex;justify-content:space-around;align-items:center;z-index:99}
+.bnav{flex:1;text-align:center;color:#5a738f;font-size:9px;font-weight:600;padding:6px}
+.bnav.active{color:#2ecc71}
+.bnav-icon{font-size:22px;margin-bottom:3px;display:block}
+.pro-badge{font-size:8px;background:#ff3b30;color:#fff;padding:2px 5px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.maison-tag{font-size:9px;color:#ff3b30;text-align:center;padding:4px;background:#1a0a0a}
+.aviator-pro{background:#000;margin:12px;border-radius:12px;height:220px;position:relative;border:1px solid #1e3a5f;overflow:hidden}
+.game-pro{padding:12px}
+.btn-pro{width:100%;padding:14px;border:none;border-radius:8px;font-weight:700;font-size:14px;margin-top:8px}
+.btn-bet-pro{background:#2ecc71;color:#000} .btn-cash-pro{background:#ff3b30;color:#fff}
 </style>
 </head>
 <body>
+
 <div class="header">
-<div><b>1WIN GHANA</b> 🇬🇭</div>
-<div class="balance" id="bal">100.00 GHS</div>
-</div>
-<div id="lobby">
-<div style="padding:10px"><b>🔥 1XBET / 1WIN - 8 JEUX</b></div>
-<div class="grid">
-<div class="game hot" onclick="openGame('aviator')"><div class="icon">✈️</div><h3>AVIATOR</h3></div>
-<div class="game hot" onclick="openGame('crash')"><div class="icon">📈</div><h3>CRASH</h3></div>
-<div class="game" onclick="openGame('mines')"><div class="icon">💣</div><h3>MINES</h3></div>
-<div class="game" onclick="openGame('dice')"><div class="icon">🎲</div><h3>DICE</h3></div>
-<div class="game" onclick="openGame('plinko')"><div class="icon">🔴</div><h3>PLINKO</h3></div>
-<div class="game" onclick="openGame('roulette')"><div class="icon">🎰</div><h3>ROULETTE</h3></div>
-<div class="game" onclick="openGame('wheel')"><div class="icon">🎡</div><h3>WHEEL</h3></div>
-<div class="game" onclick="openGame('slots')"><div class="icon">🍒</div><h3>SLOTS</h3></div>
+<div class="logo"><b>1X</b><span>BET</span></div>
+<div class="header-right">
+<button class="btn-login">CONNEXION</button>
+<button class="btn-reg">INSCRIPTION</button>
 </div>
 </div>
-<div id="playArea">
-<button class="btn" onclick="closeGame()" style="background:#333">← RETOUR</button>
-<div id="gameContent"></div>
+
+<div class="balance-bar">
+<div>SOLDE <b id="solde">100.00 GHS</b></div>
+<div>BONUS <b style="color:#2ecc71" id="bonus">0.00</b></div>
+<div style="color:#ff3b30">MAISON 80% <span class="pro-badge">PRO</span></div>
 </div>
+
+<div class="top-tabs" id="topTabs">
+<button class="active" onclick="showPage('sport',this)">SPORTS</button>
+<button onclick="showPage('live',this)">LIVE</button>
+<button onclick="showPage('aviator',this)">AVIATOR</button>
+<button onclick="showPage('casino',this)">CASINO</button>
+<button onclick="showPage('games',this)">1XGAMES</button>
+</div>
+
+<div class="hero" id="hero">
+<div>
+<h3>🎁 BONUS 200% JUSQU'À 1000 GHS</h3>
+<p>Premier dépôt - Maison 80% PRO</p>
+</div>
+<button class="hero-btn">OBTENIR</button>
+</div>
+
+<div id="sport" class="page">
+<div class="sports-header"><span>⚽ FOOTBALL - TOP MATCHS</span><span style="color:#2ecc71">Tous ></span></div>
+<div id="sportList"></div>
+</div>
+
+<div id="aviator" class="page" style="display:none">
+<div class="maison-tag">MAISON 80% - 60% CRASH < 1.8x - ALGO PRO COMME 1XBET</div>
+<div class="aviator-pro" id="aviField">
+<div id="plane" style="position:absolute;left:15%;bottom:20%;font-size:28px;transition:0.15s">✈️</div>
+<div id="grid" style="position:absolute;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(46,204,113,0.05) 30px,rgba(46,204,113,0.05) 31px)"></div>
+</div>
+<div style="text-align:center;padding:10px">
+<div id="mult" style="font-size:42px;font-weight:700;color:#2ecc71">1.00x</div>
+<div id="hist" style="font-size:11px;color:#5a738f;height:60px;overflow:auto;background:#000;border-radius:8px;padding:8px;margin-top:8px"></div>
+</div>
+<div class="game-pro">
+<div style="display:flex;gap:8px">
+<input id="mise" value="10" type="number" style="flex:1;background:#121f33;border:1px solid #1e3a5f;color:#fff;padding:14px;border-radius:8px">
+<button class="btn-pro btn-bet-pro" id="betBtn" onclick="bet()" style="flex:1">PARIER 10 GHS</button>
+</div>
+<button class="btn-pro btn-cash-pro" id="cashBtn" onclick="cash()" disabled style="display:none">CASHOUT</button>
+</div>
+</div>
+
+<div id="live" class="page" style="display:none"><div style="padding:40px;text-align:center;color:#5a738f">🔴 LIVE Bientôt<br>MAISON 80% PRO</div></div>
+<div id="casino" class="page" style="display:none"><div style="padding:20px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div onclick="showPage('aviator')" style="background:#121f33;border-radius:12px;padding:30px 10px;text-align:center;border:1px solid #1e3a5f"><div style="font-size:32px">✈️</div><div style="margin-top:8px;font-weight:600">Aviator</div><div style="font-size:10px;color:#ff3b30">80% Maison</div></div><div style="background:#121f33;border-radius:12px;padding:30px 10px;text-align:center;border:1px solid #1e3a5f"><div style="font-size:32px">💣</div><div style="margin-top:8px;font-weight:600">Mines 8B</div><div style="font-size:10px;color:#ff3b30">65% Maison</div></div></div></div></div>
+<div id="games" class="page" style="display:none"><div style="padding:40px;text-align:center">🎰 1XGAMES PRO</div></div>
+
+<div class="bottom-nav">
+<div class="bnav active"><div class="bnav-icon">☰</div>MENU</div>
+<div class="bnav" onclick="showPage('sport')"><div class="bnav-icon">⚽</div>SPORTS</div>
+<div class="bnav" onclick="showPage('live')"><div class="bnav-icon">🔴</div>LIVE</div>
+<div class="bnav" onclick="showPage('aviator')"><div class="bnav-icon">✈️</div>AVIATOR</div>
+<div class="bnav"><div class="bnav-icon">👤</div>COMPTE</div>
+</div>
+
 <script>
 let tg=window.Telegram.WebApp; tg.expand();
-let solde=parseFloat(localStorage.getItem('solde')||'100');
-let enJeu=false; let mise=10; let mult=1; let crashPoint=0; let currentGame='lobby';
-function updateBal(){document.getElementById('bal').innerText=solde.toFixed(2)+' GHS'; localStorage.setItem('solde',solde)}
-function syncToBot(type, amount){
-  currentGame=currentGame;
-  if(window.Telegram && Telegram.WebApp && Telegram.WebApp.sendData){
-    try{Telegram.WebApp.sendData(JSON.stringify({action:type,amount:amount,game:currentGame}))}catch(e){}
-  }
-}
-function openGame(name){
-currentGame=name; document.getElementById('lobby').style.display='none';
-document.getElementById('playArea').style.display='block';
-if(name==='aviator') renderAviator();
-if(name==='crash') renderCrash();
-if(name==='mines') renderMines();
-if(name==='dice') renderDice();
-if(name==='plinko') renderPlinko();
-if(name==='roulette') renderRoulette();
-if(name==='wheel') renderWheel();
-if(name==='slots') renderSlots();
-}
-function closeGame(){document.getElementById('playArea').style.display='none';document.getElementById('lobby').style.display='block'; enJeu=false}
-
-function renderAviator(){
-document.getElementById('gameContent').innerHTML=`
-<h2>✈️ AVIATOR</h2>
-<input id="miseA" type="number" value="10"><div class="canvasWrap"><div id="plane" style="position:absolute;left:20px;bottom:20px;font-size:30px">✈️</div><div class="mult" id="multA">1.00x</div></div>
-<button class="btn" id="btnA" onclick="playAviator()">MISER 10 GHS</button>
-<button class="btn" id="cashA" style="display:none;background:#00ff88;color:#000" onclick="cashAviator()">CASHOUT</button>`;
-}
-function playAviator(){
-let m=parseFloat(document.getElementById('miseA').value)||10;
-if(solde<m){alert('Solde insuffisant');return}
-solde-=m; updateBal(); syncToBot('bet',m); mise=m; enJeu=true;
-crashPoint=1+Math.random()*4+Math.random()*6; if(Math.random()<0.2) crashPoint=1+Math.random()*0.5;
-let cur=1; document.getElementById('btnA').style.display='none'; document.getElementById('cashA').style.display='block';
-let iv=setInterval(()=>{
-if(!enJeu){clearInterval(iv);return}
-cur+=0.05+cur*0.02; document.getElementById('multA').innerText=cur.toFixed(2)+'x';
-document.getElementById('cashA').innerText=`CASHOUT ${cur.toFixed(2)}x ${(mise*cur).toFixed(2)} GHS`;
-document.getElementById('plane').style.left=(20+cur*20)+'px';
-document.getElementById('plane').style.bottom=(20+cur*15)+'px'; mult=cur;
-if(cur>=crashPoint){clearInterval(iv); enJeu=false; document.getElementById('multA').innerText=`CRASH ${crashPoint.toFixed(2)}x`; document.getElementById('multA').style.color='#ff0044'; document.getElementById('cashA').style.display='none'; document.getElementById('btnA').style.display='block';}
-},100)
-}
-function cashAviator(){
-if(!enJeu) return; let gain=mise*mult; solde+=gain; updateBal(); syncToBot('win',gain); enJeu=false;
-document.getElementById('multA').innerText=`GAGNE ${gain.toFixed(2)} GHS`; document.getElementById('multA').style.color='#00ff88';
-document.getElementById('cashA').style.display='none'; document.getElementById('btnA').style.display='block';
-}
-function renderMines(){
-document.getElementById('gameContent').innerHTML=`<h2>💣 MINES</h2><input id="miseM" type="number" value="10"><div class="mines-grid" id="gridM"></div><button class="btn" onclick="startMines()">COMMENCER</button><div id="infoM"></div>`;
-startMines();
-}
-function startMines(){
-let grid=document.getElementById('gridM'); grid.innerHTML=''; let bombPos=new Set(); while(bombPos.size<3){bombPos.add(Math.floor(Math.random()*25))}
-let miseM=parseFloat(document.getElementById('miseM').value)||10;
-for(let i=0;i<25;i++){
-let d=document.createElement('div'); d.className='mine'; d.innerText='?';
-d.onclick=()=>{
-if(d.classList.contains('open')) return;
-if(bombPos.has(i)){d.classList.add('bomb'); d.innerText='💣'; document.getElementById('infoM').innerText='BOOM Perdu '+miseM; solde-=miseM; updateBal(); syncToBot('bet',miseM); setTimeout(startMines,1200)}
-else{d.classList.add('open'); d.innerText='💎'; let gain=miseM*1.3; document.getElementById('infoM').innerHTML=`Gain ${gain.toFixed(2)} <button class='btn' onclick='solde+=${gain};updateBal();syncToBot("win",${gain});document.getElementById("infoM").innerText="Gagne ${gain}"'>CASHOUT</button>`}
-}; grid.appendChild(d);
-}
-}
-function renderDice(){
-document.getElementById('gameContent').innerHTML=`<h2>🎲 DICE</h2><input id="miseD" type="number" value="10"><button class="btn" onclick="playDice('low')">< 50 x1.98</button><button class="btn" onclick="playDice('high')">> 50 x1.98</button><div class="mult" id="resD">--</div>`;
-}
-function playDice(side){
-let miseD=parseFloat(document.getElementById('miseD').value)||10; if(solde<miseD) return; solde-=miseD; updateBal(); syncToBot('bet',miseD);
-let roll=Math.floor(Math.random()*100)+1; let win=(side==='low'&&roll<50)||(side==='high'&&roll>50);
-document.getElementById('resD').innerText=roll;
-if(win){let g=miseD*1.98; solde+=g; syncToBot('win',g); document.getElementById('resD').innerText+=` WIN ${g.toFixed(2)}`} else document.getElementById('resD').innerText+=' LOSE'; updateBal();
-}
-function renderPlinko(){
-document.getElementById('gameContent').innerHTML=`<h2>🔴 PLINKO</h2><input id="miseP" type="number" value="10"><button class="btn" onclick="playPlinko()">LACHER</button><div class="mult" id="resP">--</div>`;
-}
-function playPlinko(){
-let m=parseFloat(document.getElementById('miseP').value)||10; if(solde<m) return; solde-=m; updateBal(); syncToBot('bet',m);
-let multis=[0.2,0.5,1,1.5,3,1.5,1,0.5,0.2]; let pick=multis[Math.floor(Math.random()*multis.length)];
-let gain=m*pick; solde+=gain; syncToBot('win',gain); document.getElementById('resP').innerText=`x${pick} = ${gain.toFixed(2)}`; updateBal();
-}
-function renderRoulette(){
-document.getElementById('gameContent').innerHTML=`<h2>🎰 ROULETTE</h2><input id="miseR" type="number" value="10"><div style="display:flex;gap:6px"><button class="btn" style="background:red" onclick="playRoulette('red')">ROUGE x2</button><button class="btn" style="background:#000" onclick="playRoulette('black')">NOIR x2</button><button class="btn" style="background:green" onclick="playRoulette('green')">0 x14</button></div><div class="mult" id="resR">--</div>`;
-}
-function playRoulette(c){
-let m=parseFloat(document.getElementById('miseR').value)||10; if(solde<m) return; solde-=m; updateBal(); syncToBot('bet',m);
-let r=Math.random(); let res=r<0.027?'green':(r<0.513?'red':'black');
-document.getElementById('resR').innerText=res.toUpperCase();
-if(res===c){let mult=c==='green'?14:2; let gain=m*mult; solde+=gain; syncToBot('win',gain); document.getElementById('resR').innerText+=` WIN ${gain}`} else document.getElementById('resR').innerText+=' LOSE'; updateBal();
-}
-function renderWheel(){
-document.getElementById('gameContent').innerHTML=`<h2>🎡 WHEEL</h2><input id="miseW" type="number" value="10"><button class="btn" onclick="playWheel()">TOURNER</button><div class="mult" id="resW">--</div>`;
-}
-function playWheel(){
-let m=parseFloat(document.getElementById('miseW').value)||10; if(solde<m) return; solde-=m; updateBal(); syncToBot('bet',m);
-let segs=[0,0.2,0.5,1,2,5,10,50]; let s=segs[Math.floor(Math.random()*segs.length)];
-let gain=m*s; solde+=gain; if(s>0) syncToBot('win',gain); document.getElementById('resW').innerText=`x${s} = ${gain.toFixed(2)}`; updateBal();
-}
-function renderSlots(){
-document.getElementById('gameContent').innerHTML=`<h2>🍒 SLOTS</h2><input id="miseS" type="number" value="10"><button class="btn" onclick="playSlots()">SPIN</button><div class="mult" id="resS" style="font-size:40px">🍒 | 🍋 | 🔔</div>`;
-}
-function playSlots(){
-let m=parseFloat(document.getElementById('miseS').value)||10; if(solde<m) return; solde-=m; updateBal(); syncToBot('bet',m);
-let sym=['🍒','🍋','🔔','💎','7️⃣']; let a=sym[Math.floor(Math.random()*sym.length)]; let b=sym[Math.floor(Math.random()*sym.length)]; let c=sym[Math.floor(Math.random()*sym.length)];
-document.getElementById('resS').innerText=`${a} | ${b} | ${c}`;
-if(a===b&&b===c){let gain=m*(a==='7️⃣'?100:10); solde+=gain; syncToBot('win',gain); document.getElementById('resS').innerText+=` JACKPOT ${gain}`;}
-else if(a===b||b===c||a===c){let gain=m*2; solde+=gain; syncToBot('win',gain); document.getElementById('resS').innerText+=` WIN ${gain}`} updateBal();
-}
-function renderCrash(){renderAviator(); document.querySelector('#gameContent h2').innerText='📈 CRASH x1000';}
-updateBal();
+let solde=100, enJeu=false, miseC=0, mult=1, crash=1.5;
+let matchs=[
+{t:"Real Madrid",t2:"Barcelona",time:"20:00",c:{1:1.92,X:3.40,2:3.90}},
+{t:"Manchester City",t2:"Arsenal",time:"19:45",c:{1:2.10,X:3.20,2:3.10}},
+{t:"Ghana",t2:"Nigeria",time:"18:00",c:{1:2.45,X:3.00,2:2.75}},
+{t:"PSG",t2:"Bayern Munich",time:"21:00",c:{1:2.80,X:3.40,2:2.30}},
+];
+function upd(){document.getElementById('solde').innerText=solde.toFixed(2)+' GHS'}
+function showPage(p,btn){document.querySelectorAll('.page').forEach(x=>x.style.display='none');document.getElementById(p).style.display='block';if(btn){document.querySelectorAll('.top-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}document.getElementById('hero').style.display=p=='sport'?'flex':'none';if(p=='sport')renderSport();}
+function genCrash(){let r=Math.random();if(r<0.60)return 1.01+Math.random()*0.79;if(r<0.85)return 1.8+Math.random()*1.2;return 3+Math.random()*5;}
+function renderSport(){let l=document.getElementById('sportList');l.innerHTML='';matchs.forEach(m=>{let d=document.createElement('div');d.className='match-card';d.innerHTML=`<div class="match-top"><span>🏆 Ligue des Champions • ${m.time}</span><span>⭐ +98</span></div><div class="match-teams">${m.t}<br><span>${m.t2}</span></div><div class="odds-row"><div class="odd" onclick="pari('${m.t}',1,${m.c[1]})"><div class="odd-label">1</div><div class="odd-val">${m.c[1]}</div></div><div class="odd" onclick="pari('${m.t}', 'X', ${m.c.X})"><div class="odd-label">X</div><div class="odd-val">${m.c.X}</div></div><div class="odd" onclick="pari('${m.t}',2,${m.c[2]})"><div class="odd-label">2</div><div class="odd-val">${m.c[2]}</div></div></div>`;l.appendChild(d);});}
+function pari(team,ch,cote){let mise=prompt(`Pari ${team} ${ch} x${cote} - Mise GHS?`);if(!mise)return;let m=parseFloat(mise);if(m>solde){alert('Solde insuffisant');return;}solde-=m;let gain=m*cote;tg.sendData(JSON.stringify({action:"echange",de:"GHS",vers:"PARI",amount:m,recu:gain,benef:team}));alert(`Pari placé: ${team} ${ch} x${cote}\nMise ${m} -> Pot ${gain.toFixed(2)}`);upd();}
+function bet(){let m=parseFloat(document.getElementById('mise').value);if(m>solde||enJeu)return;solde-=m;miseC=m;enJeu=true;crash=genCrash();mult=1;document.getElementById('betBtn').style.display='none';let cb=document.getElementById('cashBtn');cb.style.display='block';cb.disabled=false;tg.sendData(JSON.stringify({action:"bet",amount:m,game:"aviator"}));let i=0;let loop=setInterval(()=>{if(!enJeu){clearInterval(loop);return;}i++;mult=1+i*0.07+Math.random()*0.03;document.getElementById('mult').innerText=mult.toFixed(2)+'x';document.getElementById('plane').style.left=(15+i*0.9)+'%';document.getElementById('plane').style.bottom=(20+i*0.6)+'%';cb.innerText=`CASHOUT ${(m*mult).toFixed(2)} GHS (${mult.toFixed(2)}x)`;if(mult>=crash){clearInterval(loop);enJeu=false;document.getElementById('mult').innerText=`💥 ${crash.toFixed(2)}x`;document.getElementById('mult').style.color='#ff3b30';cb.style.display='none';document.getElementById('betBtn').style.display='block';document.getElementById('hist').innerHTML=`<div style="color:#ff3b30">CRASH ${crash.toFixed(2)}x -${m} GHS</div>`+document.getElementById('hist').innerHTML;setTimeout(()=>{document.getElementById('mult').style.color='#2ecc71';document.getElementById('plane').style.left='15%';document.getElementById('plane').style.bottom='20%';},1200);}},100);upd();}
+function cash(){if(!enJeu)return;if(Math.random()<0.08){alert('Cashout trop tard - Maison 80%');return;}let g=miseC*mult;solde+=g;enJeu=false;document.getElementById('betBtn').style.display='block';document.getElementById('cashBtn').style.display='none';document.getElementById('hist').innerHTML=`<div style="color:#2ecc71">WIN ${mult.toFixed(2)}x +${g.toFixed(2)}</div>`+document.getElementById('hist').innerHTML;tg.sendData(JSON.stringify({action:"win",amount:g,game:"aviator"}));upd();}
+renderSport();upd();
 </script>
 </body>
 </html>
